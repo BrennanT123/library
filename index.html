@@ -8,21 +8,26 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <form action="" method="post" id="bookSubmit">
-        <label for="bookTitle">Title</label>
-        <input type="text" id="bookTitle" name="bookTitle">
-        <label for="bookAuthor">Author</label>
-        <input type="text" id="bookAuthor" name="bookAuthor">
-        <label for="bookRead">Is read?</label>
-        <input type="text" id="bookRead" name="bookRead">
-        <button type="button" id="submitBook">Submit</button>
-    </form>
+    <button id="bookAddButton"> Add new book</button>
+    
+    <dialog id="bookDialog">
+        <form action="" method="post" id="bookSubmit">
+            <label for="bookTitle">Title</label>
+            <input type="text" id="bookTitle" name="bookTitle">
+            <label for="bookAuthor">Author</label>
+            <input type="text" id="bookAuthor" name="bookAuthor">
+            <label for="bookRead">Is read?</label>
+            <input type="checkbox" id="bookRead" name="bookRead">
+            <button type="button" id="submitBook">Submit</button>
+        </form>
+    </dialog>
     <table id="libraryTable">
         <tbody>
             <tr>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Read?</th>
+                <th>Delete</th>
             </tr>
         </tbody>
     </table>

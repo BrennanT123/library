@@ -6,7 +6,14 @@ function Book(title,author,read)
 {
     this.title = title;
     this.author = author;
-    this.read = read;
+    if(read.checked)
+    {
+        this.read = 1;
+    }
+    else
+    {
+        this.read = 0;
+    }
 }
 
 //adds new book to library array. Also sends it to the table to be added to the dom
@@ -31,8 +38,36 @@ function addToTable(table,newLibrary)
     authorCell.appendChild(newAuthor);
 
     let readCell = newRow. insertCell(2);
-    let newRead = document.createTextNode(addNewBook.read);
-    readCell.appendChild(newRead);
+    let readButton = document.createElement("input");
+    readButton.type = "checkbox";
+    if(addNewBook.read ==0)
+    {
+    newRow.style.backgroundColor = "red";
+    }
+    else
+    {
+        newRow.style.backgroundColor = "green";
+    }
+    readButton.addEventListener("change",() => {
+        if(readButton.checked)
+        {
+            newRow.style.backgroundColor = "green";
+        }else{
+            newRow.style.backgroundColor = "red";
+        }
+    })
+    readCell.appendChild(readButton);
+
+
+
+
+    let deleteCell = newRow.insertCell(3);
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete"
+    deleteButton.addEventListener("click",() => {newRow.remove();});
+    deleteCell.appendChild(deleteButton);
+
+
 }
 
 
@@ -45,7 +80,11 @@ const inputRead = document.querySelector('#bookRead');
 //table
 const libraryTable = document.querySelector('#libraryTable');
 //when button is clicked add values from form to the new library and  send to table
-libform.addEventListener('click',() => {addBookToLibrary(libraryTable,inputTitle.value,inputAuthor.value,inputRead.value); inputAuthor.value = ''; inputTitle.value =''; inputRead.value = '';});
+libform.addEventListener('click',() => {addBookToLibrary(libraryTable,inputTitle.value,inputAuthor.value,inputRead); inputAuthor.value = ''; inputTitle.value =''; inputRead.value = ''; dialog.close();});
 
 
+//open dialog
+const dialog = document.querySelector("#bookDialog");
+const showDialog= document.querySelector('#bookAddButton');
+showDialog.addEventListener("click", () => {dialog.showModal();})
 
