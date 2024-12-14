@@ -2,8 +2,10 @@ let myLibrary = [];
 
 //book constructor
 
-function Book(title,author,read)
+class Book
 {
+
+    constructor(title,author,read){
     this.title = title;
     this.author = author;
     if(read.checked)
@@ -15,19 +17,10 @@ function Book(title,author,read)
         this.read = 0;
     }
 }
-
-//adds new book to library array. Also sends it to the table to be added to the dom
-function addBookToLibrary(table,title,author,read)
-{
-    const newBook = new Book(title,author,read);
-    myLibrary.push(newBook);
-    addToTable(table,myLibrary);
-}
-
 //adds book to table
-function addToTable(table,newLibrary)
+addToTable(table,newLibrary)
 {
-    addNewBook= newLibrary.pop();
+    let addNewBook= newLibrary.pop();
     let newRow = table.insertRow(-1);
     let titleCell = newRow. insertCell(0);
     let newTitle = document.createTextNode(addNewBook.title);
@@ -69,6 +62,17 @@ function addToTable(table,newLibrary)
 
 
 }
+
+}
+
+//adds new book to library array. Also sends it to the table to be added to the dom
+function addBookToLibrary(table,title,author,read)
+{
+    const newBook = new Book(title,author,read);
+    myLibrary.push(newBook);
+    newBook.addToTable(table,myLibrary);
+}
+
 
 
 //button 
